@@ -46,6 +46,16 @@ class Application extends Model
 {
     use HasFactory;
 
+    const STATUS_NEW_NAME = 'новая';
+    const STATUS_IN_PROCESS_NAME = 'в процессе';
+    const STATUS_APPROVED_NAME = 'одобрена';
+    const STATUS_REJECTED_NAME = 'отклонена';
+
+    const STATUS_NEW = 'new';
+    const STATUS_IN_PROCESS = 'processed';
+    const STATUS_APPROVED = 'approved';
+    const STATUS_REJECTED = 'rejected';
+
     public function bank(): BelongsTo
     {
         return $this->belongsTo(Bank::class);
@@ -157,5 +167,20 @@ class Application extends Model
         $this->status = $status;
 
         return $this;
+    }
+
+    /**
+     * @param string $status
+     * @return string
+     */
+    public static function getStatusName(string $status): string
+    {
+        return match ($status) {
+            self::STATUS_APPROVED => self::STATUS_APPROVED_NAME,
+            self::STATUS_NEW => self::STATUS_NEW_NAME,
+            self::STATUS_IN_PROCESS => self::STATUS_IN_PROCESS_NAME,
+            self::STATUS_REJECTED => self::STATUS_REJECTED_NAME,
+            default => 'error'
+        };
     }
 }

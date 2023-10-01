@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Application;
 
+use App\Models\Application;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ApplicationCollection extends JsonResource
@@ -23,7 +24,7 @@ class ApplicationCollection extends JsonResource
             "credit_term" => $this->resource->getCreditTerm(),
             "interest_rate" => $this->resource->getInterestRate(),
             "credit_reason" => $this->resource->getCreditReason(),
-            "status" => $this->resource->getStatus(),
+            "status" => Application::getStatusName($this->resource->getStatus()),
             "created_at" => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }

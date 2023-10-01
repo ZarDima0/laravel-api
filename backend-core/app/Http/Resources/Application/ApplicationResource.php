@@ -29,7 +29,7 @@ class ApplicationResource extends JsonResource
             "credit_term" => $this->resource->getCreditTerm(),
             "interest_rate" => $this->resource->getInterestRate(),
             "credit_reason" => $this->resource->getCreditReason(),
-            "status" => $this->resource->getStatus(),
+            "status" => Application::getStatusName($this->resource->getStatus()),
             "created_at" => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }
