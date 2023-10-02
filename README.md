@@ -12,7 +12,7 @@
 
 ### docker-compose up --build -d
 
-### docker exec -it grill-php bash
+### docker exec -it laravel-php bash
 
 ### Выполнить в контейнере установку пакетов Composer
 
